@@ -1,38 +1,326 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2&display=swap');
+
+:root {
+    --primary-bright-red: hsl(356, 69%, 56%);
+    --primary-lime-green: hsl(163, 72%, 41%);
+    --very-dark-blue: hsl(230, 17%, 14%);
+    --white: hsl(0, 0%, 100%);
+    --desaturated-blue: hsl(228, 34%, 66%);
+    --gradient-start: hsl(210, 78%, 56%);
+    --gradient-end: hsl(146, 68%, 55%);
+    --dark-desaturated-blue: hsl(228, 28%, 20%);
+    --light-grayish-blue: hsl(227, 47%, 96%);
+}
+
 .App {
-  text-align: center;
+    width: 100%;
+    min-height: 100vh;
+    background-color: var(--very-dark-blue);
+    font-family: 'Baloo 2', cursive;
+    color: var(--white);
+    transition: all .2s ease-out;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.container {
+    margin: 0 9%;
+    padding-top: 40px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+header {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+header h2 {
+    font-size: 24px;
+    line-height: 1.3;
 }
 
-.App-link {
-  color: #61dafb;
+header .togglerCont {
+    color: var(--desaturated-blue);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.label {
+    padding: 9px;
+}
+
+header p {
+    font-size: 14px;
+    color: var(--desaturated-blue);
+    font-weight: 700;
+}
+
+/* toggler */
+.switch {
+    position: relative;
+    display: inline-flex;
+    width: 42px;
+    height: 21px;
+    background-image: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
+    border-radius: 50px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggler {
+    position: absolute;
+    cursor: pointer;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    content: "";
+    background-image: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
+    border-radius: 50px;
+    transition: all .4s ease;
+}
+
+.toggler:before {
+    position: absolute;
+    cursor: pointer;
+    top: 3px;
+    left: 3px;
+    content: "";
+    height: 15px;
+    width: 15px;
+    background-color: var(--very-dark-blue);
+    border-radius: 100%;
+    transition: all .4s ease;
+}
+
+input:checked+.toggler {
+    background-image: linear-gradient(to right, hsl(223, 50%, 87%), hsl(223, 50%, 87%));
+}
+
+input:checked+.toggler::before {
+    background-color: var(--white);
+}
+
+input:checked+.toggler:before {
+    transform: translateX(20px);
+}
+
+input:checked+.toggler:hover {
+    background-image: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
+    transition: all .4s ease-in;
+}
+
+/* BIG CARD */
+.current-data-box {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 40px 0;
+    justify-content: space-around;
+}
+
+.big-card {
+    background-color: var(--dark-desaturated-blue);
+    padding: 18px;
+    width: 250px;
+    height: 220px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 5px;
+    margin-right: 14px;
+    margin-bottom: 14px;
+    text-align: center;
+    justify-content: center;
+    transition: all .4s ease-in;
+}
+
+.big-card:hover {
+    background-color: hsl(228deg 25% 26%);
+    cursor: pointer;
+    transition: all .2s ease;
+}
+
+.big-card .username {
+    color: var(--desaturated-blue);
+    font-size: 14px;
+}
+
+.big-card .username span {
+    position: relative;
+    bottom: 3px;
+    left: 5px;
+}
+
+.big-card .followers-box h2 {
+    font-size: 50px;
+}
+
+.big-card .followers-box p {
+    color: var(--desaturated-blue);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    position: relative;
+    top: -14px;
+}
+
+.stats {
+    color: var(--primary-lime-green);
+    font-size: 14px;
+}
+
+.down {
+    color: var(--primary-bright-red);
+}
+
+.stats span {
+    position: relative;
+    top: 1.4px;
+    left: 2px;
+}
+
+.overview-section {
+    padding: 12px 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+/* Small Box */
+.small-card {
+    width: 250px;
+    padding: 13px 18px;
+    background-color: var(--dark-desaturated-blue);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: space-between;
+    row-gap: 15px;
+    border-radius: 5px;
+    margin-right: 14px;
+    margin-bottom: 14px;
+    transition: all .4s ease-in;
+}
+
+.small-card:hover {
+    background-color: hsl(228deg 25% 26%);
+    cursor: pointer;
+    transition: all .2s ease;
+}
+
+.small-card-top {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.small-card-bottom {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.title-text {
+    color: var(--desaturated-blue);
+    font-weight: 700;
+}
+
+.count-text {
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.border {
+    display: none;
+}
+
+/* Light Theme */
+.light {
+    background-color: var(--white);
+    color: black;
+    transition: all .4s ease-in;
+}
+
+.big-card-light {
+    background-color: var(--light-grayish-blue);
+    transition: all .2s ease-in;
+}
+
+.big-card-light:hover {
+    background-color: hsl(227, 47%, 91%);
+    transition: all .2s ease;
+}
+
+.small-card-light {
+    background-color: var(--light-grayish-blue);
+    transition: all .2s ease-in;
+}
+
+.small-card-light:hover {
+    background-color: hsl(227, 47%, 91%);
+    transition: all .2s ease;
+}
+
+/* Media queries */
+@media screen and (max-width: 646px) {
+    .container {
+        margin: 0 5%;
+    }
+}
+
+@media screen and (max-width: 502px) {
+    .container {
+        margin: 0 9px;
+    }
+
+    .current-data-box {
+        margin: 20px 0;
+    }
+
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .header-text {
+        padding: 0 5px;
+        margin-left: 9px;
+    }
+
+    .togglerCont {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 5px;
+    }
+
+    .overview-text {
+        padding: 0 5px;
+        margin-left: 9px;
+    }
+
+    .big-card {
+        width: 96%;
+        margin-right: 0;
+    }
+
+    .small-card {
+        width: 96%;
+        margin-right: 0;
+    }
+
+    .border {
+        display: block;
+        width: 95%;
+        height: 2px;
+        background-color: var(--dark-desaturated-blue);
+        margin: 16px 0;
+        position: relative;
+        left: 3%;
+    }
 }
